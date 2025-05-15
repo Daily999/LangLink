@@ -144,7 +144,7 @@ define符號 由assembly definition檔案來控制。
 Unity Localization支援`CultureInfo`的語言文化符號，某些遊戲可能會使用此資訊來呈現一些資訊（如幣值數字或日期格式），  
 LangLink會嘗試將Key值表格的欄位轉換成`CultureInfo`的語言文化符號，並將其傳遞給Unity Localization。  
 但這個轉換是有風險的，因為LangLink無法保證所有的Key值都能正確轉換成`CultureInfo`的語言文化符號。  
-為確保成功轉換，翻譯提供者可以在()簡查  
+為確保成功轉換，翻譯提供者可以在[這裡](./CultureCode.md)簡查  
 
 # License
 🥳 MIT License. and try support me.
