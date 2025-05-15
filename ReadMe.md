@@ -132,7 +132,7 @@ Community translations are contributed by users, so developers should actively m
 It’s possible to load multiple versions of the same language.
 You can add version identifiers in the file name, e.g.:
 - 繁體中文<Daily漢化組>_UI
-- 繁體中文<Google MT>_UI
+- 繁體中文<Google MT>_UI  
 These versions will be displayed as separate languages in the game.
 
 ## 🪪 Preserve Translator Info
