@@ -114,18 +114,48 @@ and the define symbols are controlled by assembly definition files.
 
 The method signatures are the same, but the return types differ.
 
-# Community Translation Implementation Suggestions
+# 🌐 Community Translation Implementation Guidelines
 
-## Filename
-You can load multiple versions of the same language. Use version tags in the filename to distinguish them, for example:  
-`繁體中文 <Daily漢化組>_UI`, `繁體中文 <GoogleMachineTranslation>_UI`.  
-This way, different versions will be shown as separate languages in the game.
+Some implementation suggestions for community-driven translations.
 
-## Preserve Community Translator Info
-Since community translations come from various contributors, developers can reserve a localized key to keep contributor information visible.
+## 📄 Provide Translation Sheets
 
-## Culture Info
-Unity Localization supports `CultureInfo` language culture codes. Some games use this info to display specific data (like currency or date formats).  
-LangLink will try to convert keys in the table columns to `CultureInfo` language culture codes and pass them to Unity Localization.  
-However, this conversion is risky because LangLink cannot guarantee all keys convert correctly.  
-To ensure successful conversion, translators may add hints inside () brackets.  
+Developers should provide a translation sheet that the community can use to contribute translations.
+If the content contains sensitive information (such as game story elements or easter eggs), it's recommended to establish a review mechanism.
+
+## 🛡️ Monitor and Moderate
+
+Community translations are contributed by users, so developers should actively monitor the content to prevent inappropriate or incorrect translations.
+
+## 🗂️ File Naming
+
+It’s possible to load multiple versions of the same language.
+You can add version identifiers in the file name, e.g.:
+
+Traditional Chinese<Daily Team>_UI
+Traditional Chinese<Google MT>_UI
+These versions will be displayed as separate languages in the game.
+
+## 🪪 Preserve Translator Info
+
+Since translations come from various contributors, developers can reserve a dedicated localization key for translators to include their name or credits in-game.
+
+## 🔠 Translation Length
+
+Translation length may affect UI layout, and overlapping or misaligned text might occur.
+Translators should try to keep text concise or use Rich Text formatting (if enabled), e.g.:
+
+Force line break: <br>
+Adjust font size: <size=20>
+## 🌍 Culture Code
+
+Unity Localization supports CultureInfo language codes, which may be used to display locale-specific data such as currency or date formats.
+LangLink will attempt to convert table key fields into valid CultureInfo codes and pass them to Unity Localization.
+
+⚠️ However, this conversion is not guaranteed to be successful for all keys.
+Translators can check this list to ensure compatibility.
+
+# 🪪 License
+
+MIT License.
+🥳 If you find this useful, consider supporting me!
