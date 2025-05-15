@@ -1,4 +1,5 @@
 # 💬 LangLink — Unity Community Translation Solution
+[![繁體中文](https://img.shields.io/badge/README-繁體中文-red?style=flat-square)](./ReadMe_zh.md)
 
 LangLink is a localization import plugin designed for Unity that allows importing custom-formatted translation data at runtime.  
 Based on Unity's Localization package, LangLink provides convenient external language data import features, making it easy for anyone to integrate translation data into their game.
