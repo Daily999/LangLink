@@ -81,7 +81,7 @@ If you want to control the startup process of LangLink yourself, you can use the
 ### Using Unity Package Manager (UPM)
 
 ~~~json
-"studio.daily.langlink" : "https://github.com/Daily999/langlink.git"
+"studio.daily.langlink" : "https://github.com/Daily999/langlink.git?path=LangLink"
 ~~~
 
 ✅ Dependencies  
