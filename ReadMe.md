@@ -1,46 +1,46 @@
-# 💬 LangLink — Unity社群翻譯解決方案
+# 💬 LangLink — Unity Community Translation Solution
 
-LangLink 是一款為 Unity 打造的本地化語言導入插件，可以在運行時導入自訂格式的翻譯資料。  
-LangLink基於 Unity 的 Localization 套件，並提供了方便的外部語言資料導入功能，讓任何人能夠輕鬆地將翻譯資料整合到遊戲中。
+LangLink is a localization import plugin designed for Unity that allows importing custom-formatted translation data at runtime.  
+Based on Unity's Localization package, LangLink provides convenient external language data import features, making it easy for anyone to integrate translation data into their game.
 
-## ✨ 主要特點
+## ✨ Key Features
 
-✅ 支援動態載入自訂格式的翻譯資料（如 TSV、CSV、JSON…由開發者定義）  
-🔁 執行階段即時註冊並切換語言資源  
-📦 完整整合 Unity Localization 套件系統  
-🔌 模組化設計，易於擴充與維護  
-🌍 允許玩家或社群貢獻語系資料，提升遊戲國際化深度
+✅ Supports dynamic loading of custom-formatted translation data (e.g., TSV, CSV, JSON… defined by the developer)  
+🔁 Registers and switches language resources instantly at runtime  
+📦 Fully integrates with Unity Localization package system  
+🔌 Modular design for easy extension and maintenance  
+🌍 Allows players or community members to contribute language data, enhancing game internationalization  
+Whether you are an indie developer or a project team that needs multi-language support, LangLink provides an extensible and low-coupling language data management solution.
 
-## 🚀 快速開始
+## 🚀 Quick Start
 
-### 簡易啟動
+### Easy Setup
 
-最快速的啟動方式，一切保持預設值，LangLink 會自動載入 `streamingAssets/LangLink` 資料夾下的所有翻譯資料。
+The fastest way to start. Keep all default settings, and LangLink will automatically load all translation data under the `streamingAssets/LangLink` folder.
 
 ~~~csharp
 LangLink.SetupLangLink();
 ~~~
 
-### 翻譯資料
+### Translation Data
 
-- 將翻譯檔案放入載入目錄（預設為 `StreamingAssets/LangLink`）
-- 預設檔案格式為 TSV，可透過 `LangLink.TargetFileFormat = "*.tsv"` 指定其他格式
-- 檔名格式為 `<locale>_<tableName>`：
-    - `locale` 是語言名稱，會顯示在 Unity 的語言清單中
-    - `tableName` 則對應 Unity Localization 中的表格名稱
-    - 可以透過 `IFileNameParser` 介面來自訂檔名格式
+- Place translation files into the loading directory (default is `StreamingAssets/LangLink`)
+- Default file format is TSV; you can specify other formats via `LangLink.TargetFileFormat = "*.tsv"`
+- Filename format: `<locale>_<tableName>`:
+    - `locale` is the language name, which will appear in Unity’s language list
+    - `tableName` corresponds to the table name in Unity Localization
+    - You can customize the filename format via the `IFileNameParser` interface
 
-### 自訂翻譯資料格式
+### Custom Translation Data Format
 
-LangLink 支援自訂翻譯資料格式，開發者可以根據需求定義資料格式。只需要實作 `ITableTxtToDictionary` 介面，並在 `LangLink`  
-中註冊即可。
+LangLink supports custom translation data formats. Developers can define their own format by implementing the `ITableTxtToDictionary` interface and registering it in `LangLink`.
 
 ~~~csharp
 public class MyTableTxtToDictionary : ITableTxtToDictionary
 {
     public Dictionary<string, string> Convert(string filePath)
     {
-        // 讀取檔案並轉換為字典
+        // Read the file and convert it to a dictionary
         // ...
         return new Dictionary<string, string>();
     }
@@ -49,102 +49,82 @@ public class Test
 {
     void Start()
     {
-        // 註冊自訂格式的翻譯資料
+        // Register custom format translation parser
         LangLink.TableParser= new MyTableTxtToDictionary();
-        // 設定 LangLink
+        // Setup LangLink
         LangLink.SetupLangLink();
     }
 }
 ~~~
 
-## 🔧 LangLink 核心 API
+## 🔧 LangLink Core API
 
-LangLink 提供了一些核心 API 來操作語言資料，以下是一些常用的 API：
+LangLink provides several core APIs for managing language data. Here are some commonly used ones:
 
-- `LangLink.SetupLangLink()`：以預設的狀態啟動LangLink。
-- `LangLink.SetupLangLinkAsync()`：以非同步的方式啟動LangLink。
+- `LangLink.SetupLangLink()` — Start LangLink with default settings
+- `LangLink.SetupLangLinkAsync()` — Start LangLink asynchronously
 
-### 進階使用
+### Advanced Usage
 
-如果你想自己控制 LangLink 的啟動流程，可以使用以下 API：
+If you want to control the startup process of LangLink yourself, you can use the following APIs:
 
-- `LangLink.LoadCustomLocalization()`： 載入語言資料。
-- `LangLink.LoadCustomLocalization(string path)`： 載入指定路徑的語言資料。
-- `LangLink.LoadCustomLocalizationAsync()`：非同步載入語言資料。
-- `LangLink.LoadCustomLocalizationAsync(string path)`：非同步載入指定路徑的語言資料。
-- `LangLink.CreateCustomLocalization(string fileName, string tableTxt)`： 創建自訂的語言資料。
-- `AssignTableProvider()`： 向 Unity Localization 註冊表格提供者。
+- `LangLink.LoadCustomLocalization()` — Load language data
+- `LangLink.LoadCustomLocalization(string path)` — Load language data from a specified path
+- `LangLink.LoadCustomLocalizationAsync()` — Load language data asynchronously
+- `LangLink.LoadCustomLocalizationAsync(string path)` — Load language data asynchronously from a specified path
+- `LangLink.CreateCustomLocalization(string fileName, string tableTxt)` — Create custom language data
+- `AssignTableProvider()` — Register a table provider to Unity Localization
 
-## 🛠️ 安裝方式
+## 🛠️ Installation
 
-### 使用 Unity Package Manager (UPM)
+### Using Unity Package Manager (UPM)
 
 ~~~json
 "studio.daily.langlink" : "https://github.com/Daily999/langlink.git"
 ~~~
 
-✅ 依賴套件需求  
-LangLink 依賴 Unity Localization 套件。請確認專案已安裝：
+✅ Dependencies  
+LangLink depends on the Unity Localization package. Please make sure your project has it installed:
 
-Unity Localization（建議版本：1.5.0 以上）  
-若尚未安裝，可透過 Package Manager 安裝：
+Unity Localization (recommended version: 1.5.0 or above)  
+If not installed, you can install it via Package Manager:
 
-開啟 Unity → Window > Package Manager  
-搜尋 "Localization"  
-點選安裝
+Open Unity → Window > Package Manager  
+Search for "Localization"  
+Click Install
 
-## UniTask 支援
+## UniTask Support
 
-LangLink 支援 UniTask來進行非同步操作，可以提供更高效能的非同步操作。  
-請確保在專案中已安裝 UniTask 套件，然後在需要使用非同步操作的地方導入 UniTask 命名空間。
+LangLink supports UniTask for asynchronous operations, providing more efficient async handling.  
+Make sure UniTask is installed in your project, and import the UniTask namespace where needed.
 
-LangLink插件內部使用define符號來切換呼叫的方法，  
-define符號 由assembly definition檔案來控制。
+LangLink internally uses define symbols to switch call methods,  
+and the define symbols are controlled by assembly definition files.
 
 ~~~csharp
 #if LANGLINK_SUPPORT_UNITASK
-    // 使用 UniTask
+    // Use UniTask
    public static async UniTask<Dictionary<string, string>> LoadCustomLocalizationAsync()
 #else
-    // 一般方法
+    // Standard method
     public static async Task<Dictionary<string, string>> LoadCustomLocalizationAsync()
 #endif
 ~~~
 
-兩者方法簽名相同，但回傳型別不同。
+The method signatures are the same, but the return types differ.
 
-# 社群翻譯實作建議
+# Community Translation Implementation Suggestions
 
-一些實作建議
+## Filename
+You can load multiple versions of the same language. Use version tags in the filename to distinguish them, for example:  
+`繁體中文 <Daily漢化組>_UI`, `繁體中文 <GoogleMachineTranslation>_UI`.  
+This way, different versions will be shown as separate languages in the game.
 
-## 提供翻譯表格
+## Preserve Community Translator Info
+Since community translations come from various contributors, developers can reserve a localized key to keep contributor information visible.
 
-開發者需要向社群提供一個翻譯表格，讓社群能夠在上面進行翻譯。如果表格中有敏感訊息（可能透漏遊戲劇情或彩蛋）可以擬定相關的審核機制。
-
-## 注意管理
-
-社群翻譯的內容是由社群貢獻的，開發者需要注意管理這些翻譯內容，避免出現不當或不正確的翻譯。
-
-## 檔案名稱
-
-載入相同語言的多個版本是可以的，可以在檔名上加上版本來區分，例如：`繁體中文<Daily漢化組>_UI`、`繁體中文<Google機翻>_UI`。  
-這樣在遊戲中的語言就會以個別的名稱呈現。
-
-## 保留社群翻譯資訊
-
-社群翻譯來自各方貢獻，為了保留翻譯者的資訊，開發者可以留下一個社群翻譯資訊的語言化Key來讓翻譯者留下自己的資訊。
-
-## 翻譯長度
-
-翻譯的長度可能會影響遊戲的UI，出現UI錯位或重疊的情況在所難免。翻譯者可以盡量控制翻譯的長度，或是利用`Rich Text`來控制格式（如果有開啟這項功能）。
-例如 強制換行<br> 調整大小<size=20>
-
-## 語言文化符
-
-Unity Localization支援`CultureInfo`的語言文化符號，某些遊戲可能會使用此資訊來呈現一些資訊（如幣值數字或日期格式），  
-LangLink會嘗試將Key值表格的欄位轉換成`CultureInfo`的語言文化符號，並將其傳遞給Unity Localization。  
-但這個轉換是有風險的，因為LangLink無法保證所有的Key值都能正確轉換成`CultureInfo`的語言文化符號。  
-為確保成功轉換，翻譯提供者可以在()簡查  
-
-# License
-🥳 MIT License. and try support me.
+## Culture Info
+Unity Localization supports `CultureInfo` language culture codes. Some games use this info to display specific data (like currency or date formats).  
+LangLink will try to convert keys in the table columns to `CultureInfo` language culture codes and pass them to Unity Localization.  
+However, this conversion is risky because LangLink cannot guarantee all keys convert correctly.  
+To ensure successful conversion, translators may add hints inside () brackets.  
