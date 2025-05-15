@@ -6,7 +6,7 @@ Based on Unity's Localization package, LangLink provides convenient external lan
 
 ## ✨ Key Features
 
-✅ Supports dynamic loading of custom-formatted translation data (e.g., TSV, CSV, JSON… defined by the developer)  
+✅ Supports dynamic loading of custom-formatted translation data (e.g., TSV, CSV, defined by the developer)  
 🔁 Registers and switches language resources instantly at runtime  
 📦 Fully integrates with Unity Localization package system  
 🔌 Modular design for easy extension and maintenance  
@@ -26,7 +26,7 @@ LangLink.SetupLangLink();
 ### Translation Data
 
 - Place translation files into the loading directory (default is `StreamingAssets/LangLink`)
-- Default file format is TSV; you can specify other formats via `LangLink.TargetFileFormat = "*.tsv"`
+- Default file format is CSV; you can specify other formats via `LangLink.TargetFileFormat = "*.csv"`
 - Filename format: `<locale>_<tableName>`:
     - `locale` is the language name, which will appear in Unity’s language list
     - `tableName` corresponds to the table name in Unity Localization
