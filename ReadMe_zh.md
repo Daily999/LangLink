@@ -5,7 +5,7 @@ LangLink基於 Unity 的 Localization 套件，並提供了方便的外部語言
 
 ## ✨ 主要特點
 
-✅ 支援動態載入自訂格式的翻譯資料（如 TSV、CSV、JSON…由開發者定義）  
+✅ 支援動態載入自訂格式的翻譯資料（如 TSV、CSV、由開發者定義）  
 🔁 執行階段即時註冊並切換語言資源  
 📦 完整整合 Unity Localization 套件系統  
 🔌 模組化設計，易於擴充與維護  
@@ -24,7 +24,7 @@ LangLink.SetupLangLink();
 ### 翻譯資料
 
 - 將翻譯檔案放入載入目錄（預設為 `StreamingAssets/LangLink`）
-- 預設檔案格式為 TSV，可透過 `LangLink.TargetFileFormat = "*.tsv"` 指定其他格式
+- 預設檔案格式為 CSV，可透過 `LangLink.TargetFileFormat = "*.csv"` 指定其他格式
 - 檔名格式為 `<locale>_<tableName>`：
     - `locale` 是語言名稱，會顯示在 Unity 的語言清單中
     - `tableName` 則對應 Unity Localization 中的表格名稱
