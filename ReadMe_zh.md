@@ -127,17 +127,25 @@ define符號 由assembly definition檔案來控制。
 
 ## 檔案名稱
 
-載入相同語言的多個版本是可以的，可以在檔名上加上版本來區分，例如：`繁體中文<Daily漢化組>_UI`、`繁體中文<Google機翻>_UI`。  
+載入相同語言的多個版本是可以的，可以在檔名上加上版本來區分，例如：
+- `繁體中文<Daily漢化組>_UI`
+- `繁體中文<Google機翻>_UI`
 這樣在遊戲中的語言就會以個別的名稱呈現。
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.43.30.png)
 
 ## 保留社群翻譯資訊
 
-社群翻譯來自各方貢獻，為了保留翻譯者的資訊，開發者可以留下一個社群翻譯資訊的語言化Key來讓翻譯者留下自己的資訊。
+社群翻譯來自各方貢獻，為了保留翻譯者的資訊，開發者可以留下一個社群翻譯資訊的語言化Key來讓翻譯者留下自己的資訊。  
+
+![iamge](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.58.05.png)
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/May-15-2025%2018-04-21.gif)
 
 ## 翻譯長度
 
 翻譯的長度可能會影響遊戲的UI，出現UI錯位或重疊的情況在所難免。翻譯者可以盡量控制翻譯的長度，或是利用`Rich Text`來控制格式（如果有開啟這項功能）。
-例如 強制換行<br> 調整大小<size=20>
+例如 
+- 強制換行: `<br>`
+- 調整大小: `<size=20>`
 
 ## 語言文化符
 
@@ -146,5 +154,8 @@ LangLink會嘗試將Key值表格的欄位轉換成`CultureInfo`的語言文化�
 但這個轉換是有風險的，因為LangLink無法保證所有的Key值都能正確轉換成`CultureInfo`的語言文化符號。  
 為確保成功轉換，翻譯提供者可以在[這裡](./CultureCode.md)簡查  
 
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.50.10.png)
+
 # License
-🥳 MIT License. and try support me.
+🥳 MIT License. 
+如果這個插件有幫助到你，可以考慮贊助一下
