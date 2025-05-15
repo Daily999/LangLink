@@ -80,7 +80,7 @@ LangLink 提供了一些核心 API 來操作語言資料，以下是一些常用
 ### 使用 Unity Package Manager (UPM)
 
 ~~~json
-"studio.daily.langlink" : "https://github.com/Daily999/langlink.git"
+"studio.daily.langlink" : "https://github.com/Daily999/langlink.git?path=LangLink"
 ~~~
 
 ✅ 依賴套件需求  
