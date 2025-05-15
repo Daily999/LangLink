@@ -1,0 +1,25 @@
+{
+    "name": "Studio.Daily.LangLink",
+    "rootNamespace": "Studio.Daily.LangLink",
+    "references": [
+        "Unity.Localization",
+        "Unity.ResourceManager",
+        "Unity.Addressables",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "LANGLINK_SUPPORT_UNITASK"
+        }
+    ],
+    "noEngineReferences": false
+}

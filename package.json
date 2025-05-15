@@ -1,0 +1,11 @@
+{
+  "name": "studio.daily.langlink",
+  "version": "0.0.0",
+  "displayName": "LangLink",
+  "description": "LangLink is a modular localization plugin for Unity that empowers developers to dynamically load and register language data at runtime.\n It\u2019s designed with flexibility in mind \u2014 supporting custom file formats defined by the developer or community.",
+  "unity": "2020.3",
+  "author": {
+    "name": "Daily",
+    "email": "zxc99707@gmail.com"
+  }
+}
