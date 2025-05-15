@@ -149,8 +149,9 @@ Since translations come from various contributors, developers can reserve a dedi
 Translation length may affect UI layout, and overlapping or misaligned text might occur.
 Translators should try to keep text concise or use Rich Text formatting (if enabled), e.g.:
 
-Force line break: <br>
-Adjust font size: <size=20>
+- Force line break: `<br>`
+- Adjust font size: `<size=20>`
+
 ## 🌍 Culture Code
 
 Unity Localization supports CultureInfo language codes, which may be used to display locale-specific data such as currency or date formats.
