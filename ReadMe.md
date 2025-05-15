@@ -131,13 +131,18 @@ Community translations are contributed by users, so developers should actively m
 
 It’s possible to load multiple versions of the same language.
 You can add version identifiers in the file name, e.g.:
-- 繁體中文<Daily漢化組>_UI
-- 繁體中文<Google MT>_UI  
-These versions will be displayed as separate languages in the game.  
-![image](https://github.com/Daily999/LangLink/blob/main/截圖%202025-05-15%20下午5.43.30.png)
+- `繁體中文<Daily漢化組>_UI`
+- `繁體中文<Google MT>_UI`  
+These versions will be displayed as separate languages in the game.
+
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.43.30.png)
+
 ## 🪪 Preserve Translator Info
 
-Since translations come from various contributors, developers can reserve a dedicated localization key for translators to include their name or credits in-game.
+Since translations come from various contributors, developers can reserve a dedicated localization key for translators to include their name or credits in-game.  
+
+![iamge](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.58.05.png)
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/May-15-2025%2018-04-21.gif)
 
 ## 🔠 Translation Length
 
@@ -149,10 +154,12 @@ Adjust font size: <size=20>
 ## 🌍 Culture Code
 
 Unity Localization supports CultureInfo language codes, which may be used to display locale-specific data such as currency or date formats.
-LangLink will attempt to convert table key fields into valid CultureInfo codes and pass them to Unity Localization.
+LangLink will attempt to convert table `key` fields into valid CultureInfo codes and pass them to Unity Localization.
 
 ⚠️ However, this conversion is not guaranteed to be successful for all keys.
-Translators can check this list to ensure compatibility.
+Translators can check [this](https://github.com/Daily999/LangLink/blob/main/CultureCode.md) list to ensure compatibility.  
+
+![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.50.10.png)
 
 # 🪪 License
 
