@@ -156,6 +156,23 @@ LangLink會嘗試將Key值表格的欄位轉換成`CultureInfo`的語言文化�
 
 ![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.50.10.png)
 
+## 📘 CultureInfo格式化注意事項
+由於 Unity Localization 系統不允許新增重複的語言代碼，LangLink 採用「自訂語言代碼」機制來支援多語言版本。
+如果你的遊戲中有使用`CultureInfo`來動態格式化文字，這可能會造成問題。  
+
+```C#
+var culture = LocalizationSettings.SelectedLocale.Identifier.CultureInfo; // ❌ null！
+```
+因為自訂語言代碼會讓unity無法建立`CultureInfo`，為此LangLink提供了`GetCurrentCultureInfo()`方法來獲取當前正確的CultureInfo
+
+```C#
+    var cultureInfo = LangLink.GetCurrentCultureInfo();
+    var formattedNumber = (0.3).ToString("N2", cultureInfo);
+    
+    // or
+    var formattedNumber2 = Smart.Format(cultureInfo, "{v:P}", new { v = 0.1234 });
+```
+
 # License
 🥳 MIT License. 
 如果這個插件有幫助到你，可以考慮贊助一下

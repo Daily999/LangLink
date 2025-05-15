@@ -162,6 +162,23 @@ Translators can check [this](https://github.com/Daily999/LangLink/blob/main/Cult
 
 ![image](https://github.com/Daily999/LangLink/blob/main/.github/Image/截圖%202025-05-15%20下午5.50.10.png)
 
+##📘 Notes on CultureInfo Formatting
+
+Unity Localization does not allow adding duplicate language codes, so LangLink uses "custom language codes" to support multiple language versions.
+If your game uses CultureInfo to dynamically format text, this can cause issues.
+```c#
+var culture = LocalizationSettings.SelectedLocale.Identifier.CultureInfo; // ❌ null!
+```
+Because custom language codes prevent Unity from creating a valid CultureInfo,
+LangLink provides the GetCurrentCultureInfo() method to retrieve the correct CultureInfo at runtime:
+```c#
+var cultureInfo = LangLink.GetCurrentCultureInfo();
+var formattedNumber = (0.3).ToString("N2", cultureInfo);
+
+// or
+var formattedNumber2 = Smart.Format(cultureInfo, "{v:P}", new { v = 0.1234 });
+```
+Let me know if you'd like this in a more formal or more casual tone.
 # 🪪 License
 
 MIT License.

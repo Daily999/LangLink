@@ -13,10 +13,10 @@ namespace Studio.Daily.LangLink
 {
     public static partial class LangLink
     {
-        public static string TargetFileFormat { get; set; } = "*.tsv";
+        public static string TargetFileFormat { get; set; } = "*.csv";
         public static string DefaultLoadPath { get; set; } = $"{Application.streamingAssetsPath}/LangLink";
         public static IFileNameParser FileNameParser { get; set; } = new DefaultFileNameParser();
-        public static ITableTxtToDictionary TableParser { get; set; } = new TsvToDictionary();
+        public static ITableTxtToDictionary TableParser { get; set; } = new CsvToDictionary();
 
         public static Dictionary<string, List<CustomLang>> LoadedCustomLang { get; private set; }
 
@@ -61,7 +61,24 @@ namespace Studio.Daily.LangLink
             var settings = LocalizationSettings.Instance;
             settings.GetStringDatabase().TableProvider = null;
         }
+        
+        public static CultureInfo GetCurrentCultureInfo()
+        {
+            var currentLocale = LocalizationSettings.SelectedLocale;
+            if (currentLocale == null)
+            {
+                Debug.LogWarning("<LangLink> Current locale is null.");
+                return CultureInfo.InvariantCulture;
+            }
+            if (LoadedCustomLang.TryGetValue(currentLocale.LocaleName, out var customLangList))
+            {
+                var customLang = customLangList[0];
+                return new CultureInfo(customLang.LocaleCode);
+            }
 
+            var cultureInfo = currentLocale.Identifier.CultureInfo;
+            return cultureInfo;
+        }
 
 #if !LANGLINK_SUPPORT_UNITASK
         public static async void SetupLangLinkAsync()

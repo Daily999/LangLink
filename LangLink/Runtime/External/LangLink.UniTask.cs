@@ -1,8 +1,11 @@
 #if LANGLINK_SUPPORT_UNITASK
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 namespace Studio.Daily.LangLink
@@ -22,7 +25,10 @@ namespace Studio.Daily.LangLink
                     continue;
                 }
                 var newLocal = customLang.Locale;
+                customLang.LocaleCode = newLocal.Identifier.Code;
+                newLocal.Identifier = new LocaleIdentifier(newLocal.LocaleName);
                 LocalizationSettings.AvailableLocales.AddLocale(newLocal);
+
 
                 if (LoadedCustomLang.TryGetValue(newLocal.LocaleName, out var customLangList))
                 {
