@@ -133,8 +133,8 @@ It’s possible to load multiple versions of the same language.
 You can add version identifiers in the file name, e.g.:
 - 繁體中文<Daily漢化組>_UI
 - 繁體中文<Google MT>_UI  
-These versions will be displayed as separate languages in the game.
-
+These versions will be displayed as separate languages in the game.  
+![image](https://github.com/Daily999/LangLink/blob/main/截圖%202025-05-15%20下午5.43.30.png)
 ## 🪪 Preserve Translator Info
 
 Since translations come from various contributors, developers can reserve a dedicated localization key for translators to include their name or credits in-game.
