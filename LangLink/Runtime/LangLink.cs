@@ -73,6 +73,7 @@ namespace Studio.Daily.LangLink
             if (LoadedCustomLang.TryGetValue(currentLocale.LocaleName, out var customLangList))
             {
                 var customLang = customLangList[0];
+                Debug.Log(customLang.LocaleCode);
                 return new CultureInfo(customLang.LocaleCode);
             }
 
@@ -81,7 +82,7 @@ namespace Studio.Daily.LangLink
         }
 
 #if !LANGLINK_SUPPORT_UNITASK
-        public static async void SetupLangLinkAsync()
+        public static async Task SetupLangLinkAsync()
         {
             LoadedCustomLang = new Dictionary<string, List<CustomLang>>();
             var files = await LoadCustomLocalizationAsync();
@@ -94,6 +95,8 @@ namespace Studio.Daily.LangLink
                     continue;
                 }
                 var newLocal = customLang.Locale;
+                customLang.LocaleCode = newLocal.Identifier.Code;
+                newLocal.Identifier = new LocaleIdentifier(newLocal.LocaleName);
                 LocalizationSettings.AvailableLocales.AddLocale(newLocal);
 
                 if (LoadedCustomLang.TryGetValue(newLocal.LocaleName, out var customLangList))
@@ -105,9 +108,12 @@ namespace Studio.Daily.LangLink
                     LoadedCustomLang.Add(newLocal.LocaleName, new List<CustomLang> { customLang });
                 }
             }
-            Application.quitting -= UnAssignTableProvider;
-            Application.quitting += UnAssignTableProvider;
-            AssignTableProvider();
+            if(LoadedCustomLang.Count > 0)
+            {
+                Application.quitting -= UnAssignTableProvider;
+                Application.quitting += UnAssignTableProvider;
+                AssignTableProvider();
+            }
         }
         public static async Task<Dictionary<string, string>> LoadCustomLocalizationAsync()
             => await LoadCustomLocalizationAsync(DefaultLoadPath);

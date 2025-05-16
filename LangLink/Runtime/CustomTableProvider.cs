@@ -13,17 +13,17 @@ namespace Studio.Daily.LangLink
     {
         public AsyncOperationHandle<TTable> ProvideTableAsync<TTable>(string tableCollectionName, Locale locale) where TTable : LocalizationTable
         {
-            Debug.Log($"Requested {locale.LocaleName} {typeof(TTable).Name} with the name <{tableCollectionName}>.");
-
             if (LangLink.LoadedCustomLang == null || LangLink.LoadedCustomLang.Count == 0)
             {
-                Debug.LogWarning("Custom language dictionary is not loaded.");
+                Debug.Log("Custom language dictionary is not loaded.");
                 return default;
             }
-
-            var defaultLocale = LocalizationSettings.AvailableLocales.Locales[0];
+            
             if (LangLink.LoadedCustomLang.TryGetValue(locale.LocaleName, out var customLangList))
             {
+                Debug.Log($"Requested {locale.LocaleName} {typeof(TTable).Name} with the name <{tableCollectionName}>.");
+                var defaultLocale = LocalizationSettings.AvailableLocales.Locales[0];
+
                 foreach (var customLang in customLangList)
                 {
                     if (customLang.TableName != tableCollectionName || typeof(TTable) != typeof(StringTable))

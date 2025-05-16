@@ -38,10 +38,12 @@ namespace Studio.Daily.LangLink
                 {
                     LoadedCustomLang.Add(newLocal.LocaleName, new List<CustomLang> { customLang });
                 }
+            }if(LoadedCustomLang.Count > 0)
+            {
+                Application.quitting -= UnAssignTableProvider;
+                Application.quitting += UnAssignTableProvider;
+                AssignTableProvider();
             }
-            Application.quitting -= UnAssignTableProvider;
-            Application.quitting += UnAssignTableProvider;
-            AssignTableProvider();
         }
         public static async UniTask<Dictionary<string, string>> LoadCustomLocalizationAsync()
             => await LoadCustomLocalizationAsync(DefaultLoadPath);
