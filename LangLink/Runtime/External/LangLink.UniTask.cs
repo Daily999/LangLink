@@ -1,12 +1,11 @@
 #if LANGLINK_SUPPORT_UNITASK
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Studio.Daily.LangLink
 {
@@ -29,7 +28,6 @@ namespace Studio.Daily.LangLink
                 newLocal.Identifier = new LocaleIdentifier(newLocal.LocaleName);
                 LocalizationSettings.AvailableLocales.AddLocale(newLocal);
 
-
                 if (LoadedCustomLang.TryGetValue(newLocal.LocaleName, out var customLangList))
                 {
                     customLangList.Add(customLang);
@@ -38,15 +36,16 @@ namespace Studio.Daily.LangLink
                 {
                     LoadedCustomLang.Add(newLocal.LocaleName, new List<CustomLang> { customLang });
                 }
-            }if(LoadedCustomLang.Count > 0)
+            }
+            if (LoadedCustomLang.Count > 0)
             {
+                await SetSharedTableCacheAsync();
                 Application.quitting -= UnAssignTableProvider;
                 Application.quitting += UnAssignTableProvider;
                 AssignTableProvider();
             }
         }
-        public static async UniTask<Dictionary<string, string>> LoadCustomLocalizationAsync()
-            => await LoadCustomLocalizationAsync(DefaultLoadPath);
+        public static async UniTask<Dictionary<string, string>> LoadCustomLocalizationAsync() => await LoadCustomLocalizationAsync(DefaultLoadPath);
         public static async UniTask<Dictionary<string, string>> LoadCustomLocalizationAsync(string loadPath)
         {
             if (!Directory.Exists(loadPath))
@@ -80,6 +79,35 @@ namespace Studio.Daily.LangLink
                 var content = await File.ReadAllTextAsync(filePath);
                 return (fileName, content);
             }
+        }
+        public static async UniTask SetSharedTableCacheAsync()
+        {
+            var settings = LocalizationSettings.Instance;
+            var defaultLocale = LocalizationSettings.ProjectLocale;
+
+            var handle = settings.GetStringDatabase().GetAllTables(defaultLocale);
+            await handle;
+
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError($"<LangLink> Failed to get all tables: {handle.Status}");
+                return;
+            }
+            for (int i = 0; i < handle.Result.Count; i++)
+            {
+                var table = handle.Result[i];
+                if (table.SharedData == null)
+                {
+                    Debug.Log($"<LangLink> Table {table.TableCollectionName} does not have shared data.");
+                    continue;
+                }
+                var sharedTableData  = Object.Instantiate(table.SharedData);
+                if (sharedTableData != null)
+                {
+                    SharedTableCache.TryAdd(table.TableCollectionName, sharedTableData);
+                }
+            }
+            Debug.Log($"<LangLink> SharedTableCache count: {SharedTableCache.Count}");
         }
     }
 }
