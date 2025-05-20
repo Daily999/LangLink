@@ -55,11 +55,13 @@ namespace Studio.Daily.LangLink
             var provider = new CustomTableProvider();
             var settings = LocalizationSettings.Instance;
             settings.GetStringDatabase().TableProvider = provider;
+            settings.GetAssetDatabase().TableProvider = provider;
         }
         public static void UnAssignTableProvider()
         {
             var settings = LocalizationSettings.Instance;
             settings.GetStringDatabase().TableProvider = null;
+            settings.GetAssetDatabase().TableProvider = null;
         }
         
         public static CultureInfo GetCurrentCultureInfo()
