@@ -4,8 +4,6 @@
 LangLink is a localization import plugin designed for Unity that allows importing custom-formatted translation data at runtime.  
 Based on Unity's Localization package, LangLink provides convenient external language data import features, making it easy for anyone to integrate translation data into their game.
 
-# ⚠️ This version is still in the preview stage. If you plan to use it in a production project, please evaluate carefully. The current version may cause a deadlock during runtime loading, and we are actively working on resolving the issue.
-
 ## ✨ Key Features
 
 ✅ Supports dynamic loading of custom-formatted translation data (e.g., TSV, CSV, defined by the developer)  
